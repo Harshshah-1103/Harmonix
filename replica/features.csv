@@ -1,0 +1,15 @@
+feature,area,priority,original,clone,notes
+Home personalized mixes and recent carousels,home,must,yes,yes,Clean-room implementation of curated mixes and podcasts
+Category filter chips (All/Music/Podcasts),home,must,yes,yes,Instant filter feed by content type
+Search with live debounce filtering,search,must,yes,yes,Real-time search across tracks artists albums
+Colored genre browse cards grid,search,must,yes,yes,Spotify-style 2-column vibrant category cards
+Your Library with Liked Songs and custom playlists,library,must,yes,yes,Manage saved music and custom playlist creation
+Persistent bottom mini player with progress bar,player,must,yes,yes,Docked above bottom bar with play/pause and expansion
+Full-screen now playing view with gradient backdrop,player,must,yes,yes,Immersive cover art seeker timestamps controls
+Real audio playback with MediaPlayer,audio,must,yes,yes,Real audible playback with play pause seek next prev
+Queue inspection and upcoming track management,player,should,yes,yes,View and play songs in upcoming order
+Interactive synchronized lyrics view,player,should,yes,yes,Displays lyrics with line highlighting and toggle
+Shuffle and repeat playback modes,player,should,yes,yes,Toggle shuffle and repeat off/all/one
+Heart / Like track toggle with library sync,library,should,yes,yes,Synchronized with Liked Songs collection
+Grid vs List view toggle in Library,library,could,yes,yes,Toggle view mode for playlists
+Sound visualizer animation in now playing,player,could,yes,yes,Smooth animated EQ wave bars

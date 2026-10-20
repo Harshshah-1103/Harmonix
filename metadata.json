@@ -1,0 +1,6 @@
+{
+  "name": "Harmonix",
+  "description": "Harmonix: Premium music streaming with worldwide song search, personalized greeting, live audio player, synchronized lyrics, and playlist link import from Spotify and YouTube. Developed by Harsh Shah.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
