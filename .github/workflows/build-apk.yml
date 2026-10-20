@@ -1,4 +1,3 @@
-```yaml
 name: Build Harmonix APK
 
 on:
@@ -6,6 +5,9 @@ on:
   push:
     branches:
       - main
+
+permissions:
+  contents: read
 
 jobs:
   build-apk:
@@ -26,30 +28,18 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Install Android SDK 36
+        run: sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
+
+      # This repository contains Gradle wrapper properties but no gradlew script
+      # or wrapper JAR, so install the exact Gradle distribution directly.
+      - name: Install Gradle 9.3.1
         run: |
-          sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
-
-      - name: Create debug keystore
-        run: |
-          keytool -genkeypair \
-            -v \
-            -keystore debug.keystore \
-            -storepass android \
-            -alias androiddebugkey \
-            -keypass android \
-            -keyalg RSA \
-            -keysize 2048 \
-            -validity 10000 \
-            -dname "CN=Android Debug,O=Android,C=US"
-
-      - name: Make Gradle executable
-        run: chmod +x ./gradlew
-
-      - name: Clean project
-        run: ./gradlew clean
+          wget -q https://services.gradle.org/distributions/gradle-9.3.1-bin.zip -O /tmp/gradle.zip
+          unzip -q /tmp/gradle.zip -d "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/gradle-9.3.1/bin" >> "$GITHUB_PATH"
 
       - name: Build debug APK
-        run: ./gradlew assembleDebug --stacktrace
+        run: gradle clean assembleDebug --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
@@ -57,4 +47,4 @@ jobs:
           name: Harmonix-debug-apk
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
-```
+          retention-days: 14
